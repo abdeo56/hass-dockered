@@ -1,0 +1,30 @@
+services:
+  sqlite3-to-mysql:
+    image: ghcr.io/techouse/sqlite3-to-mysql:latest
+    container_name: sqlite3-to-mysql
+    working_dir: /hass_config
+    volumes:
+      - ./config/hass_config:/hass_config
+    command: --sqlite-file ./home-assistant_v2.db --mysql-user ${MYSQL_USER} --mysql-password ${MYSQL_PASSWORD} --mysql-database ${MYSQL_DATABASE} --mysql-host core-mariadb
+    stdin_open: true
+    tty: true
+    restart: "no"
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+    driver: bridge
+#######################
+### To run the sqlite3-to-mysql container manually, use the command below.
+## Replace <YOUR PASSWORD> and <MARIA DB HOST OR IP ADDRESS> with your actual values.
+#######################
+# docker run -it \
+#     --workdir $(pwd) \
+#     --volume $(pwd):$(pwd) \
+#     --rm ghcr.io/techouse/sqlite3-to-mysql:latest \
+#     --sqlite-file /config/hass_config/home-assistant_v2.db \
+#     --mysql-user homeassistant \
+#     --mysql-password <YOUR PASSWORD> \
+#     --mysql-database ha_db \
+#     --mysql-host <MARIA DB HOST OR IP ADDRESS>

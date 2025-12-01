@@ -1,0 +1,81 @@
+services:
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    command: certonly --standalone --email ${DOMAIN_EMAIL} --agree-tos --no-eff-email -d ${DUCKDNS_DOMAIN}
+    volumes:
+      - ./config/letsencrypt:/etc/letsencrypt
+      - ./config/certbot:/var/lib/letsencrypt
+    networks:
+      - hass-network
+    ports:
+      - 80:80
+
+  deconz:
+    image: deconzcommunity/deconz:stable
+    container_name: deconz
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    environment:
+      - TZ=${TZ}
+      - DECONZ_WEB_PORT=8080
+      - DECONZ_WS_PORT=8443
+      - DEBUG_INFO=1
+      - DEBUG_APS=0
+      - DEBUG_ZCL=0
+      - DEBUG_ZDP=0
+      - DEBUG_OTAU=0
+    volumes:
+      - ./config/deconz:/opt/deCONZ
+    restart: unless-stopped
+    network_mode: host
+    # Uncomment below to use bridge networking instead of host
+    # networks:
+    #   - hass-network
+    # ports:
+    #   - 8080:80
+    #   - 8443:443
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    user: ${PUID}:${PGID}
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./config/mosquitto/config:/mosquitto/config
+      - ./config/mosquitto/data:/mosquitto/data
+      - ./config/mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    network_mode: host
+    # Uncomment below to use bridge networking instead of host
+    # networks:
+    #   - hass-network
+    # ports:
+    #   - 1883:1883
+    #   - 9001:9001
+
+  duplicati:
+    image: linuxserver/duplicati
+    container_name: duplicati
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=${TZ}
+      - SETTINGS_ENCRYPTION_KEY=${DUPLICATI_ENCRYPTION_KEY}
+      - DUPLICATI__WEBSERVICE_PASSWORD=${DUPLICATI_WEBSERVICE_PASSWORD}
+    volumes:
+      - ./config/duplicati/config:/config
+      - ./config/duplicati/backups:/backups
+      - ./config/hass_config:/source
+    restart: unless-stopped
+    network_mode: host
+    # Uncomment below to use bridge networking instead of host
+    # ports:
+    #   - 8200:8200
+    # networks:
+    #   - hass-network
+
+networks:
+  hass-network:
+    driver: bridge
