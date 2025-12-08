@@ -14,6 +14,7 @@ services:
       - ./config/mariadb/backup:/backup
       - ./config/mariadb/conf:/var/lib/mysql
       - ./config/mariadb-init:/docker-entrypoint-initdb.d
+    command: cron
     restart: unless-stopped
     network_mode: host
     # Uncomment below to use bridge networking instead of host

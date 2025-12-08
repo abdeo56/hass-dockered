@@ -4,7 +4,13 @@
 
 # Install cron if not present
 apt-get update && apt-get install -y cron
-# Add cron job to run backup.sh at 1am daily
-echo "0 1 * * * /docker-entrypoint-initdb.d/backup.sh" >>/etc/crontab
-# Start cron in the background
-cron
+
+# Make backup script executable
+chmod +x /docker-entrypoint-initdb.d/backup.sh
+
+# Create a crontab file for root user# Load the crontab for root user
+crontab -u root /docker-entrypoint-initdb.d/crontab
+# Start cron in the background using command specified in docker-compose.yml
+# (command: cron)
+# else enable the following lines to start cron here (but this runs only on container start)
+# cron
