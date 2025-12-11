@@ -3,7 +3,6 @@ services:
     container_name: portainer
     image: portainer/portainer-ce:lts
     profiles:
-      - extra
       - full
     restart: always
     volumes:
